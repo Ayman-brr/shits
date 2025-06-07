@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Millionaire bhaya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Video Editor</h1>
+        <p>Upload a video, add text overlays, and export multiple clips</p>
+      </header>
+
+      <main>
+        <!-- Video Upload Section -->
+        <section class="upload-section">
+          <h2>1. Upload Video</h2>
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="videoInput" accept="video/*" />
+            <label for="videoInput">
+              <div class="upload-content">
+                <span>📹</span>
+                <p>Click to upload video or drag & drop</p>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Video Preview Section -->
+        <section class="preview-section" id="previewSection" style="display: none;">
+          <h2>2. Preview & Edit</h2>
+          <div class="video-container" id="videoContainer">
+            <video id="videoPreview" controls></video>
+            <div class="text-overlay" id="textOverlay">
+              <div class="text-content" id="textContent">Sample Text</div>
+              <div class="resize-handles">
+                <div class="resize-handle nw"></div>
+                <div class="resize-handle ne"></div>
+                <div class="resize-handle sw"></div>
+                <div class="resize-handle se"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Text Controls Section -->
+        <section class="controls-section" id="controlsSection" style="display: none;">
+          <h2>3. Text Settings</h2>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label for="textInput">Text Content (use ".." to split into multiple videos):</label>
+              <textarea id="textInput" placeholder="Enter your text here...&#10;Use .. to create separate videos&#10;Like this..&#10;And this will be video 2">Sample Text</textarea>
+            </div>
+            
+            <div class="control-row">
+              <div class="control-group">
+                <label for="fontSize">Font Size (px):</label>
+                <input type="range" id="fontSize" min="8" max="200" value="24" />
+                <span id="fontSizeValue">24px</span>
+              </div>
+              
+              <div class="control-group">
+                <label for="rotation">Rotation (degrees):</label>
+                <input type="number" id="rotation" min="0" max="360" value="0" />
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label>Text Alignment:</label>
+              <div class="alignment-buttons">
+                <button type="button" class="align-btn active" data-align="left">Left</button>
+                <button type="button" class="align-btn" data-align="center">Center</button>
+                <button type="button" class="align-btn" data-align="right">Right</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Export Section -->
+        <section class="export-section" id="exportSection" style="display: none;">
+          <h2>4. Export Videos</h2>
+          <div class="export-info">
+            <p>Videos to create: <span id="videoCount">1</span></p>
+            <div class="video-list">
+              <label for="videoSelect">Preview text for each video:</label>
+              <select id="videoSelect">
+                <option value="0">Video 1</option>
+              </select>
+              <div class="selected-text" id="selectedText">Sample Text</div>
+            </div>
+          </div>
+          
+          <div class="export-controls">
+            <button type="button" id="exportBtn" class="export-btn">
+              <span>🎬 Export All Videos</span>
+            </button>
+            <div class="progress-container" id="progressContainer" style="display: none;">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <span class="progress-text" id="progressText">Processing...</span>
+            </div>
+          </div>
+          
+          <div class="download-section" id="downloadSection" style="display: none;">
+            <h3>Downloads Ready:</h3>
+            <div id="downloadLinks"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
